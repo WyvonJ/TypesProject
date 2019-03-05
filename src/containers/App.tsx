@@ -3,9 +3,12 @@
 // 同时使用默认导出和命名导出会导致报错
 import React from 'react';
 import { Component } from 'react';
+// yarn add @types/react-navigation 添加ts的.d.ts类型支持
+import { StackNavigator } from 'react-navigation';
 // Text Button为原生组件
-import { Platform, StyleSheet, Text, View, Button } from 'react-native';
-
+import { Platform, StyleSheet, Text, AsyncStorage } from 'react-native';
+// import { Provider } from 'react-redux';
+import { homepage } from '../requests/homepage';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -20,6 +23,7 @@ export interface Props {
 
 interface State {
   enthusiasmLevel: number;
+  content: string
 }
 
 export default class App extends Component<Props, State> {
@@ -27,39 +31,26 @@ export default class App extends Component<Props, State> {
     super(props);
 
     if((props.enthusiasmLevel || 0) <= 0) {
-      throw new Error('You shall die');
+      // throw new Error('You shall die');
     }
 
     this.state = {
-      enthusiasmLevel: props.enthusiasmLevel || 1
+      enthusiasmLevel: props.enthusiasmLevel || 1,
+      content: ''
     };
 
+    homepage.getHomePageList({}).then( res =>{
+      // console.error(res);
+      this.setState({content: JSON.stringify(res) })
+    })
+
   }
 
-  onIncrement = () => {this.setState({enthusiasmLevel: this.state.enthusiasmLevel + 1})};
-
-  onDecrement = () => {this.setState({enthusiasmLevel: this.state.enthusiasmLevel - 1})};
-
-  getExclamationMarks = (numChars: number) => {
-    Array(numChars + 1).join('!');
-  }
   render() {
     return (
-      <View style={styles.root}>
-        <Text style={styles.greeting}>
-          {instructions}
-          Hello{' '}
-          { this.props.name + this.getExclamationMarks(this.state.enthusiasmLevel) }
-        </Text>
-        <View style={styles.buttons}>
-          <View style={styles.button}>
-            <Button title="-" onPress={this.onDecrement} accessibilityLabel="decrement" color="red" />
-          </View>
-          <View style={styles.button}>
-            <Button title="+" onPress={this.onIncrement} accessibilityLabel="increment" color="blue" />
-          </View>
-        </View>
-      </View>
+      <Text style={styles.root}>
+      { this.state.content }
+      </Text>
     );
   }
 }
@@ -73,22 +64,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  greeting: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#009688'
-  },
-  buttons: {
-    flexDirection: 'row',
-    minHeight: 70,
-    alignItems: 'stretch',
-    alignSelf: 'center',
-    borderWidth: 5
-  },
-  button: {
-    flex: 1,
-    paddingVertical: 0
   }
 });
