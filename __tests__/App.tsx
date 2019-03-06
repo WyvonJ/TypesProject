@@ -10,5 +10,5 @@ import App from '../src/containers/App';
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
-  renderer.create(<App name="WyvonJ" enthusiasmLevel={10}/>);
+  renderer.create(<App />);
 });

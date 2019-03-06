@@ -6,13 +6,13 @@
 import { Component } from 'react';
 
 import {AppRegistry} from 'react-native';
-import App from './src/containers/App';
+import Navigator from './src/routes';
 import {name as appName} from './app.json';
 
 export default class TypesBox extends Component {
   render() {
-    return (<App />);
+    return (<Navigator />);
   }
 }
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => Navigator);

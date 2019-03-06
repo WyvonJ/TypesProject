@@ -11,7 +11,7 @@ interface State {
   dataBlob: [];
 }
 
-export default class HomeTab extends Component<Props, State> {
+export default class CategoryPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ export default class HomeTab extends Component<Props, State> {
       <ScrollView
       style={{}}
       >
-
+      <Text>pppppp</Text>
       </ScrollView>
     )
   }
@@ -40,6 +40,6 @@ export default class HomeTab extends Component<Props, State> {
   }
 
   private fetchData() {
-    
+
   }
 }
