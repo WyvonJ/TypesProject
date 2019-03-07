@@ -15,7 +15,7 @@ import theme from '../utils/theme';
 // 底部Tab页面
 import HomePage from './homepage/HomePage';
 import SearchPage from './homepage/Search';
-import CategoryPage from './categorypage/CategoryPage';
+import AssistPage from './assistpage/AssistPage';
 // homepage的顶部Tab页面
 
 
@@ -61,8 +61,8 @@ const BottomTab = createBottomTabNavigator({
       }
     }
   },
-  CategoryPage: {
-    screen: CategoryPage,
+  AssistPage: {
+    screen: AssistPage,
     navigationOptions: {
       tabBarLabel: '英雄',
       tabBarIcon:  ({focused, tintColor} : iconType) => {

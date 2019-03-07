@@ -12,7 +12,7 @@ interface State {
   dataBlob: [];
 }
 
-export default class HomePage extends Component<Props, State> {
+export default class DiscoverPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -30,13 +30,13 @@ export default class HomePage extends Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
-        {/* <StatusBar barStyle="dark-content" backgroundColor="#F44444" /> */}
+        {/* <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" /> */}
         <View style={{borderWidth: 2}}>
           <View style={styles.boxStyle}>
             <Button 
-              title="跳转到文章"
+              title="跳转类目项"
               onPress={()=>{
-              this.props.navigation.navigate('Article')
+              this.props.navigation.navigate('CategoryPage')
             }}></Button>
           </View>
         </View>
