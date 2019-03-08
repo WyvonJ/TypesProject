@@ -16,10 +16,12 @@ const theme = {
   barContentPad: (Platform.OS === 'android' ? 0 : (isiPhoneX() ? 42 : 20)),
   bottomPaddting: isiPhoneX() ? 18 : 0,
   // 主题颜色
-  primary: '#009688',
+  primary: '#00BCD4',
   red: '#F44336',
   lightGray: '#F5F5F5',
-  darkGray: '#E5E5E5'
+  darkGray: '#5E5E5E',
+  white: '#FFFFFF',
+  black: '#000000',
 };
 
 export default theme;

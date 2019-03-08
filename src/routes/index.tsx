@@ -61,11 +61,11 @@ const HomeTab = createMaterialTopTabNavigator({
     labelStyle: {
       fontSize: 12,
     },
-    tabStyle: {
-      width: 100,
-    },
+    // tabStyle: {
+    //   width: 100,
+    // },
     style: {
-      backgroundColor: 'red',
+      backgroundColor: 'gray',
     },
   }});
 
@@ -114,7 +114,7 @@ const AppContainer = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '视频',
       tabBarIcon:  ({focused, horizontal ,tintColor} : IconType) => (
-        <Ionicon name={`bars`} size={25}  color="#FF4433" />
+        <Ionicon name={`bars`} size={25}  color={tintColor} />
       )
     }
   },
@@ -132,7 +132,7 @@ const AppContainer = createBottomTabNavigator({
     navigationOptions: {
       tabBarLabel: '辅助',
       tabBarIcon:  ({focused, horizontal ,tintColor} : IconType) => (
-        <Ionicon name={`bit-coin`} size={25}  color={tintColor} />
+        <Ionicon name={`bitcoin`} size={25}  color={tintColor} />
       )
     }
   },
@@ -149,7 +149,7 @@ const AppContainer = createBottomTabNavigator({
   tabBarOptions: {
     showIcon: true,
     activeTintColor: theme.primary,
-    inactiveBackgroundColor: theme.lightGray,
+    inactiveBackgroundColor: theme.white,
     inactiveTintColor: theme.darkGray
   }
 });

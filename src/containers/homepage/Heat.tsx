@@ -1,45 +1,82 @@
 import React from 'react';
 import { Component } from 'react';
-import {Text, StyleSheet, View, ScrollView, RefreshControl, StatusBar, Button} from 'react-native';
-
-interface Props {
+import {Text, StyleSheet, View, ScrollView, RefreshControl, StatusBar, Button, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+type Props = {
   name: string;
   navigation: any;
 }
-interface State {
+type State = {
   refreshing: boolean;
   loadedData: boolean;
   dataBlob: [];
+  articleList: Array<ArticleProps>;
 }
 
-export default class VideoPage extends Component<Props, State> {
+type ArticleProps = {
+  image: string; // 标题图
+  title: string; // 标题
+  intro?: string; // 内容简介
+  hashtag?: string; // #
+  likes: number; // 点赞数
+  views: number; // 查看数
+}
+
+
+class ArticleItem extends Component<ArticleProps> {
+  constructor(props: ArticleProps) {
+    super(props)
+  }
+  render(){
+    const {image, title, intro, hashtag, likes, views} = this.props;
+    return (<View style={articleStyles.wrapper}>
+      <View>
+        <Image source={{uri: image}}/>
+      </View>
+      <View>
+        <View>{title}</View>
+        <View>
+          <View>{hashtag}</View>
+          <View>
+            <Icon name="star"></Icon>
+            <Text>{views}</Text>
+            <Icon name="star"></Icon>
+            <Text>{likes}</Text>
+          </View>
+        </View>
+      </View>
+    </View>)
+  }
+}
+
+export default class HeatPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = {
         refreshing: true,
         loadedData: false,
-        dataBlob: []
+        dataBlob: [],
+        articleList: []
     };
   }
 
   componentDidMount() {
-
+    this.setState({
+      articleList: [{
+        title: 'zuiqianwanghzsd',
+        hashtag: 'kkkafhjw',
+        likes: 5124,
+        views: 1254,
+        image: ''
+      }]
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {/* <StatusBar barStyle="dark-content" backgroundColor="#FFFF20" /> */}
-        <View style={{borderWidth: 2}}>
-          <View style={styles.boxStyle}>
-            <Button 
-              title="跳转类目项"
-              onPress={()=>{
-              this.props.navigation.navigate('Article')
-            }}></Button>
-          </View>
-        </View>
+        
       </View>
     )
   }
@@ -49,6 +86,11 @@ export default class VideoPage extends Component<Props, State> {
   }
 
   private fetchData() {
+
+  }
+
+  // 获取首页文章列表
+  private getHeatPages() {
 
   }
 }
@@ -68,5 +110,27 @@ const styles = StyleSheet.create({
     margin: 50, //外边距
     borderWidth: 20, //边框宽度
     borderColor: 'green', //边框颜色
+  }
+})
+
+const articleStyles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  image:{
+    width: 200,
+    height: 200,
+  },
+  title: {
+
+  },
+  hashtag: {
+
+  },
+  likes: {
+
   }
 })
