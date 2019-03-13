@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    // "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "react",
     "lib": ["es6"],
     "moduleResolution": "node",
-    "noImplicitAny": false, // 关闭对外来包的引入检测
+    "noImplicitAny": false,
     "noEmit": true,
     "strict": true,
     "target": "esnext"

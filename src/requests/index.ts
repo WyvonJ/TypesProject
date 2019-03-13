@@ -12,8 +12,14 @@ function getCurrentTime() {
   return date.getFullYear() + '-' + convertTime(date.getMonth() + 1) + '-' + convertTime(date.getDate()) + 'T' + convertTime(date.getHours()) + ':' + convertTime(date.getMinutes()) + ':' + convertTime(date.getSeconds() + '.' + date.getMilliseconds() + 'Z');
 }
 const homepage = {
-  getHomePageList: (params: any) => {
-    return axios.get(`${preUrl}http://www.baidu.com`, { params });
+  getBaidu: (params: any) => {
+    return axios.get(`http://www.baidu.com`, { params });
+  },
+  getHeatArticleList: (params: any) => {
+    return axios.get(`${preUrl}/other/list`, { params });
+  },
+  getHeatArticleDetail: (params: any) => {
+    return axios.get(`${preUrl}/other/list`, { params });
   },
   postHomePageList: (params: any) => {
     return axios.post(`${preUrl}/activity`, params);

@@ -20,7 +20,7 @@ import AssistPage from './assistpage/AssistPage';
 
 
 // import { Provider } from 'react-redux';
-import { homepage } from '../requests/homepage';
+// import { homepage } from '../requests/homepage';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:

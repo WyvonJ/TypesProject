@@ -3,6 +3,7 @@ import { Component } from 'react';
 import {Text, StyleSheet, View, ScrollView, RefreshControl, StatusBar, Button} from 'react-native';
 
 interface Props {
+  name: string;
   navigation: any;
 }
 interface State {
@@ -15,11 +16,11 @@ export default class VideoPage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    // this.state = {
-    //     refreshing: true,
-    //     loadedData: false,
-    //     dataBlob: []
-    // };
+    this.state = {
+        refreshing: true,
+        loadedData: false,
+        dataBlob: []
+    };
   }
 
   componentDidMount() {
@@ -29,14 +30,22 @@ export default class VideoPage extends Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
-        {/* <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" /> */}
-       
+        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+        <View style={{borderWidth: 2}}>
+          <View style={styles.boxStyle}>
+            <Button 
+              title="赛事详情"
+              onPress={()=>{
+              this.props.navigation.navigate('CategoryPage')
+            }}></Button>
+          </View>
+        </View>
       </View>
     )
   }
 
   private onRefresh()  {
-    // this.setState({refreshing: true});
+    this.setState({refreshing: true});
   }
 
   private fetchData() {

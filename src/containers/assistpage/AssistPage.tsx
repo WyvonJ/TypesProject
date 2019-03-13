@@ -28,8 +28,8 @@ export default class CategoryPage extends Component<Props, State> {
   render() {
     return (
       <ScrollView
-      style={{}}
-      >
+      style={{}}>
+      <Text>辅助</Text>
       <Text>pppppp</Text>
       </ScrollView>
     )

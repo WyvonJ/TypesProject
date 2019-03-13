@@ -33,11 +33,7 @@ export default class DiscoverPage extends Component<Props, State> {
         {/* <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" /> */}
         <View style={{borderWidth: 2}}>
           <View style={styles.boxStyle}>
-            <Button 
-              title="跳转类目项"
-              onPress={()=>{
-              this.props.navigation.navigate('CategoryPage')
-            }}></Button>
+            <Text>发现</Text>
           </View>
         </View>
       </View>

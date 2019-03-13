@@ -1,9 +1,8 @@
 import React from 'react';
 import { Component } from 'react';
-import {Text, StyleSheet, View, ScrollView, RefreshControl, StatusBar, Button} from 'react-native';
+import {Text, StyleSheet, View, ScrollView, RefreshControl, StatusBar, Button, Keyboard} from 'react-native';
 
 interface Props {
-  name: string;
   navigation: any;
 }
 interface State {
@@ -12,7 +11,7 @@ interface State {
   dataBlob: [];
 }
 
-export default class VideoPage extends Component<Props, State> {
+export default class WeekFree extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -30,16 +29,8 @@ export default class VideoPage extends Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
-        <View style={{borderWidth: 2}}>
-          <View style={styles.boxStyle}>
-            <Button 
-              title="跳转类目项"
-              onPress={()=>{
-              this.props.navigation.navigate('CategoryPage')
-            }}></Button>
-          </View>
-        </View>
+        {/* <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" /> */}
+        <Text>周免内容咔咔咔咔咔咔扩扩</Text>
       </View>
     )
   }
@@ -50,6 +41,10 @@ export default class VideoPage extends Component<Props, State> {
 
   private fetchData() {
 
+  }
+
+  private onButtonClicked() {
+    
   }
 }
 

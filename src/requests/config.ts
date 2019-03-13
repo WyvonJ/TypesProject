@@ -1,7 +1,8 @@
 import axios, { Canceler } from 'axios';
 
 const server = {
-   url: 'https://c-c.jiahuagame.com/lefantian-console/console',
+  //  url: 'https://c-c.jiahuagame.com/lefantian-console/console',
+   url: 'http://10.10.10.155:8200/jiahua-gamecenter/',
    auth: 'Xyz287454jY56345ok56V5423896v55T'
 }
 
@@ -16,6 +17,7 @@ const instance = axios.create({
 });
 
 instance.defaults.headers.post['Content-Type'] = 'application/json';
+instance.defaults.headers['token'] = 'mingame_center';
 
 instance.interceptors.response.use(res => res, err=> {
   if(axios.isCancel(err)) {

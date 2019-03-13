@@ -34,7 +34,7 @@ export default class VideoPage extends Component<Props, State> {
         <View style={{borderWidth: 2}}>
           <View style={styles.boxStyle}>
             <Button 
-              title="跳转类目项"
+              title="视频页"
               onPress={()=>{
               this.props.navigation.navigate('CategoryPage')
             }}></Button>

@@ -1,72 +1,96 @@
-import React from 'react';
-import { Component } from 'react';
-import {Text, StyleSheet, View, ScrollView, RefreshControl, StatusBar, Button} from 'react-native';
+import React from "react";
+import { PureComponent } from "react";
+import {
+  Text,
+  StyleSheet,
+  View,
+  ScrollView,
+  RefreshControl,
+  StatusBar,
+  Button,
+  DeviceEventEmitter
+} from "react-native";
+import ScrollableTabView from "react-native-scrollable-tab-view";
+import {
+  DefaultTabBar,
+  ScrollableTabBar
+} from "react-native-scrollable-tab-view";
+import JoTabBar from "../../components/JoTabBar";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
+import Heat from './Heat';
+import WeekFree from './WeekFree';
+import Competition from './Competition';
+type TabType = {
+  text: string;
+  icon: Icon;
+  activeIcon: Icon;
+};
 interface Props {
   name: string;
   navigation: any;
 }
 interface State {
-  refreshing: boolean;
-  loadedData: boolean;
-  dataBlob: [];
+  activeTab: number;
 }
 
-export default class HomePage extends Component<Props, State> {
+export default class HomePage extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = {
-        refreshing: true,
-        loadedData: false,
-        dataBlob: []
+      activeTab: 0
     };
   }
 
   componentDidMount() {
-
+    DeviceEventEmitter.addListener('EVENT_SEARCH', (data)=>{
+      // 弹出搜索页面
+      console.warn(data, 'EVENT_SEARCH');
+    }, this);
   }
 
   render() {
+    const { activeTab } = this.state;
+
     return (
-      <View style={styles.container}>
-        {/* <StatusBar barStyle="dark-content" backgroundColor="#F44444" /> */}
-        <View style={{borderWidth: 2}}>
-          <View style={styles.boxStyle}>
-            <Button 
-              title="跳转到文章"
-              onPress={()=>{
-              this.props.navigation.navigate('Article')
-            }}></Button>
-          </View>
+      <ScrollableTabView
+        tabBarPosition="top"
+        initialPage={0}
+        page={activeTab}
+        renderTabBar={() => (
+          <JoTabBar
+            backgroundColor={"#f4f4f4"}
+            tabUnderlineDefaultWidth={20} // default containerWidth / (numberOfTabs * 4)
+            tabUnderlineScaleX={3} // default 3
+            activeColor={"#0af"}
+            inactiveColor={"#333"}
+            goToPage={()=>{}}
+          />
+        )}
+      >
+        <View tabLabel="热门" style={styles.tabView}>
+          <Heat navigation={this.props.navigation}/>
         </View>
-      </View>
-    )
+        <View tabLabel="周免" style={styles.tabView}>
+          <WeekFree navigation={this.props.navigation}/>
+        </View>
+        <View tabLabel="赛事" style={styles.tabView}>
+          <Competition navigation={this.props.navigation}></Competition>
+        </View>
+      </ScrollableTabView>
+    );
   }
 
-  private onRefresh()  {
-    this.setState({refreshing: true});
+  private onRefresh() {
+    // this.setState({refreshing: true});
   }
 
-  private fetchData() {
-
-  }
+  private fetchData() {}
 }
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  boxStyle:{
-    width: 200,
-    height: 200,
-    padding: 30, //内边距
-    margin: 50, //外边距
-    borderWidth: 20, //边框宽度
-    borderColor: 'green', //边框颜色
+  tabView: {
+    flex: 1
   }
-})
+});
